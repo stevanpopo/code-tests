@@ -64,5 +64,19 @@
   console.log('slice 5', digit10.slice(5,8).join('') % 11 === 0);
   console.log('slice 6', digit10.slice(6,9).join('') % 13 === 0);
   console.log('slice 7', digit10.slice(7,10).join('') % 17 === 0);
+  // Alltogether Now
+  function checkConditions(array){
+    if (array.slice(1,4).join('') % 2 === 0 && array.slice(2,5).join('') % 3 === 0 && array.slice(3,6).join('') % 5 === 0 && array.slice(4,7).join('') % 7 === 0 && array.slice(5,8).join('') % 11 === 0 && array.slice(6,9).join('') % 13 === 0 && array.slice(7,10).join('') % 17 === 0){
+      console.log('Satisfies conditions');
+    } else {
+      console.log('Doesnt meet conditions');
+    }
+  }
+
+  const example = [1, 4, 0, 6, 3, 5, 7, 2, 8, 9];
+
+  checkConditions(example); // this now satisfies conditions, as expected
+
+  
 
 </script>
