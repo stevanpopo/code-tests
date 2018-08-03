@@ -29,54 +29,114 @@
   // testing it
   // then pushing the tested one into an array
 
-  // Let's make a function that takes an array of 10 digits and randomly shuffles them
+  // Let's make a function that takes an array of 10 digits and randomly shuffles them (https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array)
+
+  // function shuffle(array) {
+  //   var currentIndex = array.length, temporaryValue, randomIndex;
+  //
+  //   // While there remain elements to shuffle...
+  //   while (0 !== currentIndex) {
+  //
+  //     // Pick a remaining element...
+  //     randomIndex = Math.floor(Math.random() * currentIndex);
+  //     currentIndex -= 1;
+  //
+  //     // And swap it with the current element.
+  //     temporaryValue = array[currentIndex];
+  //     array[currentIndex] = array[randomIndex];
+  //     array[randomIndex] = temporaryValue;
+  //   }
+  //
+  //   return array;
+  // }
+
+  const digit10 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  // console.log('result 1', shuffle(digit10).join(''));
+  // console.log('result 2', shuffle(digit10).join(''));
+  // console.log('result 3', shuffle(digit10).join(''));
+
+  // Now create a function that checks if it satisfies the conditions
+  // console.log('slice 1', digit10.slice(1,4).join('') % 2 === 0);
+  // console.log('slice 2', digit10.slice(2,5).join('') % 3 === 0);
+  // console.log('slice 3', digit10.slice(3,6).join('') % 5 === 0);
+  // console.log('slice 4', digit10.slice(4,7).join('') % 7 === 0);
+  // console.log('slice 5', digit10.slice(5,8).join('') % 11 === 0);
+  // console.log('slice 6', digit10.slice(6,9).join('') % 13 === 0);
+  // console.log('slice 7', digit10.slice(7,10).join('') % 17 === 0);
+  // Alltogether Now
+  // function checkConditions(array){
+  //   if (array.slice(1,4).join('') % 2 === 0 && array.slice(2,5).join('') % 3 === 0 && array.slice(3,6).join('') % 5 === 0 && array.slice(4,7).join('') % 7 === 0 && array.slice(5,8).join('') % 11 === 0 && array.slice(6,9).join('') % 13 === 0 && array.slice(7,10).join('') % 17 === 0){
+  //     console.log('Satisfies conditions');
+  //   } else {
+  //     console.log('Doesnt meet conditions');
+  //   }
+  // }
+
+  // const example = [1, 4, 0, 6, 3, 5, 7, 2, 8, 9];
+
+  // checkConditions(example); // this now satisfies conditions, as expected
+
+  // Refactor - The .join can happen within the shuffle function, and check conditions can take the string rather than the array as an argument.
 
   function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
-
-    // While there remain elements to shuffle...
     while (0 !== currentIndex) {
-
-      // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
-
-      // And swap it with the current element.
       temporaryValue = array[currentIndex];
       array[currentIndex] = array[randomIndex];
       array[randomIndex] = temporaryValue;
     }
-
-    return array;
+    console.log(array);
+    return array.join('');
   }
 
-  const digit10 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  // console.log('new shuffle', shuffle(digit10)); // now returns straight as a string
 
-  console.log('result 1', shuffle(digit10).join(''));
-  console.log('result 2', shuffle(digit10).join(''));
-  console.log('result 3', shuffle(digit10).join(''));
-
-  // Now create a function that checks if it satisfies the conditions
-  console.log('slice 1', digit10.slice(1,4).join('') % 2 === 0);
-  console.log('slice 2', digit10.slice(2,5).join('') % 3 === 0);
-  console.log('slice 3', digit10.slice(3,6).join('') % 5 === 0);
-  console.log('slice 4', digit10.slice(4,7).join('') % 7 === 0);
-  console.log('slice 5', digit10.slice(5,8).join('') % 11 === 0);
-  console.log('slice 6', digit10.slice(6,9).join('') % 13 === 0);
-  console.log('slice 7', digit10.slice(7,10).join('') % 17 === 0);
-  // Alltogether Now
-  function checkConditions(array){
-    if (array.slice(1,4).join('') % 2 === 0 && array.slice(2,5).join('') % 3 === 0 && array.slice(3,6).join('') % 5 === 0 && array.slice(4,7).join('') % 7 === 0 && array.slice(5,8).join('') % 11 === 0 && array.slice(6,9).join('') % 13 === 0 && array.slice(7,10).join('') % 17 === 0){
-      console.log('Satisfies conditions');
+  function checkConditions(numberString){
+    if (numberString.slice(1,4) % 2 === 0 && numberString.slice(2,5) % 3 === 0 && numberString.slice(3,6) % 5 === 0 && numberString.slice(4,7) % 7 === 0 && numberString.slice(5,8) % 11 === 0 && numberString.slice(6,9) % 13 === 0 && numberString.slice(7,10) % 17 === 0){
+      // console.log('Satisfies conditions');
+      return true
     } else {
-      console.log('Doesnt meet conditions');
+      // console.log('Doesnt meet conditions');
+      return false;
     }
   }
 
-  const example = [1, 4, 0, 6, 3, 5, 7, 2, 8, 9];
+  const example = '1406357289';
 
-  checkConditions(example); // this now satisfies conditions, as expected
+  const correctAnswers = [];
 
-  
+  // checkConditions(example);
+
+  function shuffleAndCheck(array){
+    shuffledNumberString = shuffle(array);
+    console.log(shuffledNumberString);
+    if (checkConditions(shuffledNumberString)){
+      console.log('We have one');
+      correctAnswers.push(shuffledNumberString);
+    } else {
+      console.log('No we dont');
+    }
+  }
+
+  // console.log('1', shuffleAndCheck(digit10));
+  // console.log('2', shuffleAndCheck(digit10));
+  // console.log('3', shuffleAndCheck(digit10));
+  // console.log('4', shuffleAndCheck(digit10));
+  // console.log('5', shuffleAndCheck(digit10));
+  // shuffleAndCheck(digit10) // checked again with example directly in function just to see it can work - it did
+
+  for(let i = 1; i < 100000; i++){
+    shuffleAndCheck(digit10);
+  }
+
+  // console.log(correctAnswers); ran at i< 100000 and returned 1 correct answer = ["1406357289"] which happens to be the one we already knew ??
+
+  // Problems with current solution?
+  // 1. Conditions aren't very clean - could be more elegant
+  // 2. The random shuffles is expensive. How can I shuffle through systematically?
+  // 3. How do I know I have ALL of them that meet the condition? I could just put the loop higher and higher but takes more compute time.
 
 </script>
