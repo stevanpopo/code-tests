@@ -65,13 +65,15 @@
   // console.log('slice 6', digit10.slice(6,9).join('') % 13 === 0);
   // console.log('slice 7', digit10.slice(7,10).join('') % 17 === 0);
   // Alltogether Now
-  // function checkConditions(array){
-  //   if (array.slice(1,4).join('') % 2 === 0 && array.slice(2,5).join('') % 3 === 0 && array.slice(3,6).join('') % 5 === 0 && array.slice(4,7).join('') % 7 === 0 && array.slice(5,8).join('') % 11 === 0 && array.slice(6,9).join('') % 13 === 0 && array.slice(7,10).join('') % 17 === 0){
-  //     console.log('Satisfies conditions');
-  //   } else {
-  //     console.log('Doesnt meet conditions');
-  //   }
-  // }
+  function checkConditions(array){
+    if (array.slice(1,4).join('') % 2 === 0 && array.slice(2,5).join('') % 3 === 0 && array.slice(3,6).join('') % 5 === 0 && array.slice(4,7).join('') % 7 === 0 && array.slice(5,8).join('') % 11 === 0 && array.slice(6,9).join('') % 13 === 0 && array.slice(7,10).join('') % 17 === 0){
+      // console.log('Satisfies conditions');
+      return true;
+    } else {
+      // console.log('Doesnt meet conditions');
+      return false;
+    }
+  }
 
   // const example = [1, 4, 0, 6, 3, 5, 7, 2, 8, 9];
 
@@ -96,11 +98,11 @@
 
   // function checkConditions(numberString){
   //   if (numberString.slice(1,4) % 2 === 0 && numberString.slice(2,5) % 3 === 0 && numberString.slice(3,6) % 5 === 0 && numberString.slice(4,7) % 7 === 0 && numberString.slice(5,8) % 11 === 0 && numberString.slice(6,9) % 13 === 0 && numberString.slice(7,10) % 17 === 0){
-  //     // console.log('Satisfies conditions');
-  //     return true
+  //     console.log('Satisfies conditions');
+  //     // return true
   //   } else {
-  //     // console.log('Doesnt meet conditions');
-  //     return false;
+  //     console.log('Doesnt meet conditions');
+  //     // return false;
   //   }
   // }
 
@@ -204,21 +206,27 @@
 
   // Let's try this
   function pandigital(arg){
-    if (arg === 0) return [[1]];
+    if (arg === 1) return [[0]];
     const ans = [];
-    for (let i = 0; i <= arg; i ++){
+    for (let i = 0; i < arg; i ++){
       pandigital(arg - 1).forEach(num => {
-        console.log('num', num);
-        // console.log('splice', [num.splice(i, 0, arg-1)]);
-        // console.log('num af-splice', num);
         num.splice(i, 0, arg-1);
+        // num = num.join('');
+        // if (checkConditions(num)) ans.push(num);
         ans.push(num);
       })
     }
     return ans;
   }
 
-  console.log('0', pandigital(0));
-  console.log('1', pandigital(1));
+  // console.log('0', pandigital(0));
+  // console.log('1', pandigital(1));
+  // console.log('2', pandigital(2));
+  // console.log('3', pandigital(3));
+  console.log('10', pandigital(10));
+
+  // this now works - created pandigitals
+
+  // Now I need to add in the check credentials before pushing to answer
 
 </script>
