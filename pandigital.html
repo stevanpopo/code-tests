@@ -204,12 +204,21 @@
 
   // Let's try this
   function pandigital(arg){
-    if (arg === 0) return [''];
+    if (arg === 0) return [[1]];
     const ans = [];
-    for (let i = 0; i < arg; i ++){
-      pandigital(arg - 1).forEach(num => ans.push(num.splice(i, 0, arg-1)))
+    for (let i = 0; i <= arg; i ++){
+      pandigital(arg - 1).forEach(num => {
+        console.log('num', num);
+        // console.log('splice', [num.splice(i, 0, arg-1)]);
+        // console.log('num af-splice', num);
+        num.splice(i, 0, arg-1);
+        ans.push(num);
+      })
     }
-    return [];
+    return ans;
   }
+
+  console.log('0', pandigital(0));
+  console.log('1', pandigital(1));
 
 </script>
