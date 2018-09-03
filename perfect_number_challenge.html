@@ -23,4 +23,25 @@
 // Tips
 // When completing the task, please think about: performance, exception handling, testing, documentation
 
+function getClassification(integer) {
+    // returns 'perfect', 'abundant', or 'deficient'
+    const aliquot = [];
+    for(let i = 1; i < integer; i ++){
+      // console.log(i); goes through all even though max half
+      if(integer % i === 0) aliquot.push(i);
+    }
+
+    console.log(integer, aliquot);
+}
+
+getClassification(2);
+getClassification(3);
+getClassification(4);
+getClassification(5);
+
+getClassification(6);
+getClassification(12);
+getClassification(8);
+getClassification(15);
+
 </script>
