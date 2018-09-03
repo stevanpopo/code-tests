@@ -31,7 +31,12 @@ function getClassification(integer) {
       if(integer % i === 0) aliquot.push(i);
     }
 
-    console.log(integer, aliquot);
+    const aliquotSum = aliquot.reduce((a, b) => a + b);
+
+    console.log(integer, aliquot, aliquotSum);
+    if (aliquotSum > integer) console.log('Abundant')
+    else if (aliquotSum < integer) console.log('Deficient')
+    else console.log('Perfect');
 }
 
 getClassification(2);
